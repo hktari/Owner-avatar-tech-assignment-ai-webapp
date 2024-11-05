@@ -43,6 +43,7 @@ const TagList = styled.ul`
 
 const TagListItem = styled.li`
     background-color: #f0f0f0;
+    padding: 0.1rem 0.3rem;
 `
 
 type Props = {
