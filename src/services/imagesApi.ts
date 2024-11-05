@@ -9,4 +9,8 @@ const getImages = async (query: string, count?: number): Promise<Random[]> => {
   return response.data;
 };
 
-export { getImages };
+const analyzeImage = async (imageUrl: string): Promise<string[]> => {
+  const response = await axios.post("/analyze", { imageUrl });
+  return response.data;
+};
+export { getImages, analyzeImage };

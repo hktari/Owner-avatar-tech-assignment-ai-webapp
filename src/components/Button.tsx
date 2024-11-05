@@ -14,6 +14,10 @@ const StyledButton = styled.button`
     &:hover {
         background-color: #0050d3;
     }
+    &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
     `
 
 type Props = {
