@@ -6,13 +6,21 @@ import Button from './Button'
 import { analyzeImage } from '@/services/imagesApi'
 
 
-const Container = styled.div`
+const Card = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+`
+
+const CardBody = styled.div`
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.75rem;
+    flex-direction: column;
+    align-items: center;
 `
 
 const Caption = styled.div`
@@ -63,23 +71,25 @@ const ImageCard = ({ image }: Props) => {
     const imageAnalyzed = tags.length > 0
 
     return (
-        <Container>
+        <Card>
             <Image width={300} height={200} src={image.urls.regular} alt={image.alt_description || ''} />
-            <Caption>
-                {image.user.portfolio_url && <Link href={image.user.portfolio_url}>by {image.user.name} </Link>}
-                |
-                <Link href={image.links.html}>Unsplash</Link>
-            </Caption>
-            {!imageAnalyzed && <Button onClick={onAnalyze} isLoading={isAnalyzing}>Analyze</Button>}
+            <CardBody>
+                <Caption>
+                    {image.user.portfolio_url && <Link href={image.user.portfolio_url}>by {image.user.name} </Link>}
+                    |
+                    <Link href={image.links.html}>Unsplash</Link>
+                </Caption>
+                {!imageAnalyzed && <Button onClick={onAnalyze} isLoading={isAnalyzing}>Analyze</Button>}
 
-            {imageAnalyzed && tags &&
-                <TagList>
-                    {tags.map((tag, index) => (
-                        <TagListItem key={index}>{tag}</TagListItem>
-                    ))}
-                </TagList>
-            }
-        </Container>
+                {imageAnalyzed && tags &&
+                    <TagList>
+                        {tags.map((tag, index) => (
+                            <TagListItem key={index}>{tag}</TagListItem>
+                        ))}
+                    </TagList>
+                }
+            </CardBody>
+        </Card>
     )
 }
 
