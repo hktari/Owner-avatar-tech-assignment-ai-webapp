@@ -70,13 +70,15 @@ const ImageCard = ({ image }: Props) => {
 
     const imageAnalyzed = tags.length > 0
 
+    const hasPortfolioUrl = !!image.user.portfolio_url
+
     return (
         <Card>
             <Image width={300} height={200} src={image.urls.regular} alt={image.alt_description || ''} />
             <CardBody>
                 <Caption>
-                    {image.user.portfolio_url && <Link href={image.user.portfolio_url}>by {image.user.name} </Link>}
-                    |
+                    {hasPortfolioUrl && <Link href={image.user.portfolio_url}>by {image.user.name} </Link>}
+                    {hasPortfolioUrl && <>|</>}
                     <Link href={image.links.html}>Unsplash</Link>
                 </Caption>
                 {!imageAnalyzed && <Button onClick={onAnalyze} isLoading={isAnalyzing}>Analyze</Button>}
