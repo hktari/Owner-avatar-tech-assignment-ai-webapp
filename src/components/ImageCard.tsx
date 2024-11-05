@@ -77,7 +77,7 @@ const ImageCard = ({ image }: Props) => {
             <Image width={300} height={200} src={image.urls.regular} alt={image.alt_description || ''} />
             <CardBody>
                 <Caption>
-                    {hasPortfolioUrl && <Link href={image.user.portfolio_url}>by {image.user.name} </Link>}
+                    {hasPortfolioUrl && <Link href={image.user.portfolio_url!}>by {image.user.name} </Link>}
                     {hasPortfolioUrl && <>|</>}
                     <Link href={image.links.html}>Unsplash</Link>
                 </Caption>
