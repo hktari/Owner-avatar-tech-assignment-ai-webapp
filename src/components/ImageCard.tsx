@@ -24,6 +24,18 @@ const Caption = styled.div`
 const Link = styled.a`
     color: #666;
 `
+const TagList = styled.ul`
+    display: flex;
+    gap: 0.2rem;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+`
+
+const TagListItem = styled.li`
+    background-color: #f0f0f0;
+`
 
 type Props = {
     image: Random
@@ -48,6 +60,8 @@ const ImageCard = ({ image }: Props) => {
         }
     }
 
+    const imageAnalyzed = tags.length > 0
+
     return (
         <Container>
             <Image width={300} height={200} src={image.urls.regular} alt={image.alt_description || ''} />
@@ -56,7 +70,15 @@ const ImageCard = ({ image }: Props) => {
                 |
                 <Link href={image.links.html}>Unsplash</Link>
             </Caption>
-            <Button onClick={onAnalyze} isLoading={isAnalyzing}>Analyze</Button>
+            {!imageAnalyzed && <Button onClick={onAnalyze} isLoading={isAnalyzing}>Analyze</Button>}
+
+            {imageAnalyzed && tags &&
+                <TagList>
+                    {tags.map((tag, index) => (
+                        <TagListItem key={index}>{tag}</TagListItem>
+                    ))}
+                </TagList>
+            }
         </Container>
     )
 }
