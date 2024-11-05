@@ -6,7 +6,6 @@ import { getImages } from '@/services/imagesApi'
 import ImageCard from './ImageCard'
 import styled from 'styled-components'
 
-type Props = {}
 
 const Grid = styled.div`
     display: grid;
@@ -14,7 +13,7 @@ const Grid = styled.div`
     gap: 1rem;
 `
 
-const ImagesGrid = (props: Props) => {
+const ImagesGrid = () => {
 
     const [images, setImages] = useState<Random[]>([])
     const query = 'nature'
