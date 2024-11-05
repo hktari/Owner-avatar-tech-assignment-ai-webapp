@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useState } from 'react'
 import { Random } from 'unsplash-js/dist/methods/photos/types'
 import { getImages } from '@/services/imagesApi'
