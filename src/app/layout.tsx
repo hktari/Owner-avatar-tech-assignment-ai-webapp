@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import StyledComponentsRegistry from '../lib/registry'
+import "./globals.css"
+import StyledComponentsRegistry from "@/lib/registry";
 
 export const metadata: Metadata = {
   title: "Unsplash images tagged with AI",

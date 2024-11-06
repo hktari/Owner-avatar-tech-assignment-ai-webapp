@@ -1,25 +1,17 @@
-"use client"
-
+import Container from "@/components/Container";
 import ImagesGrid from "@/components/ImagesGrid";
-import styled from "styled-components";
 
-const Container = styled.div`
-  padding: 1rem 0.75rem;
-`
-const Title = styled.h1`
-  font-size: 2rem;
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  text-align: center;
-`
+export default async function Home() {
+  const query = 'nature'
+  const count = 10
 
-export default function Home() {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/images?query=${query}&count=${count}`
+  const response = await fetch(url, { cache: 'no-store' })
+  const images = await response.json()
+
   return (
     <Container>
-      <Title>
-        Unsplash images tagged with AI
-      </Title>
-      <ImagesGrid></ImagesGrid>
+      <ImagesGrid images={images}></ImagesGrid>
     </Container>
   );
 }
