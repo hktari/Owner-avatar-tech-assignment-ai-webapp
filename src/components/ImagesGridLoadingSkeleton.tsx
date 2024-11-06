@@ -8,7 +8,6 @@ const ImageCardLoadingSkeleton = () => {
             <div className="h-40 bg-gray-300"></div>
             <div className="h-4 w-3/4 bg-gray-300 mb-2 mx-auto"></div>
             <div className="h-8 w-1/2 bg-gray-300 absolute bottom-3 left-1/2 transform -translate-x-1/2"></div>
-
         </div>
     )
 }
