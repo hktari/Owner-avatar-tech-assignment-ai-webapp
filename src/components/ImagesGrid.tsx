@@ -6,7 +6,6 @@ import { getImages } from '@/services/imagesApi'
 import ImageCard from './ImageCard'
 import styled from 'styled-components'
 
-
 const Grid = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -14,12 +13,10 @@ const Grid = styled.div`
 `
 
 const ImagesGrid = () => {
-
     const [images, setImages] = useState<Random[]>([])
     const query = 'nature'
 
     useEffect(() => {
-        // fetch images
         async function fetchImages() {
             try {
                 setImages(await getImages(query))
@@ -34,6 +31,8 @@ const ImagesGrid = () => {
 
     return (
         <Grid>
+            {/* TODO: add suspense */}
+
             {images.map((image) => (
                 <ImageCard key={image.id} image={image} />
             ))}

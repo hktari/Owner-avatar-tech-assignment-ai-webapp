@@ -51,7 +51,6 @@ type Props = {
 }
 
 const ImageCard = ({ image }: Props) => {
-
     const [tags, setTags] = useState<string[]>([])
     const [isAnalyzing, setIsAnalyzing] = useState(false)
     const onAnalyze = async () => {
