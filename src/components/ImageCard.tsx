@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
@@ -21,6 +23,7 @@ const CardBody = styled.div`
     gap: 0.75rem;
     flex-direction: column;
     align-items: center;
+    height: 100%;
 `
 
 const Caption = styled.div`
@@ -31,6 +34,12 @@ const Caption = styled.div`
 
 const Link = styled.a`
     color: #666;
+`
+const ButtonContainer = styled.div`
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 const TagList = styled.ul`
     display: flex;
@@ -72,15 +81,19 @@ const ImageCard = ({ image }: Props) => {
     const hasPortfolioUrl = !!image.user.portfolio_url
 
     return (
-        <Card>
-            <Image width={300} height={200} src={image.urls.regular} alt={image.alt_description || ''} />
+        <Card className='max-w-[244px]'>
+            <Image width={244} height={183} style={{ objectFit: 'cover', maxHeight: "183px" }} src={image.urls.regular} alt={image.alt_description || ''} />
             <CardBody>
                 <Caption>
                     {hasPortfolioUrl && <Link href={image.user.portfolio_url!}>by {image.user.name} </Link>}
                     {hasPortfolioUrl && <>|</>}
                     <Link href={image.links.html}>Unsplash</Link>
                 </Caption>
-                {!imageAnalyzed && <Button onClick={onAnalyze} isLoading={isAnalyzing}>Analyze</Button>}
+
+                <ButtonContainer>
+
+                    {!imageAnalyzed && <Button onClick={onAnalyze} isLoading={isAnalyzing}>Analyze</Button>}
+                </ButtonContainer>
 
                 {imageAnalyzed && tags &&
                     <TagList>
