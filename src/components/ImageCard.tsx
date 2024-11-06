@@ -35,11 +35,13 @@ const Caption = styled.div`
 const Link = styled.a`
     color: #666;
 `
-const ButtonContainer = styled.div`
+const CardBodyWrapper = styled.div`
     flex: 1;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: end;
     align-items: center;
+    padding-bottom: 0.5rem;
 `
 const TagList = styled.ul`
     display: flex;
@@ -81,7 +83,7 @@ const ImageCard = ({ image }: Props) => {
     const hasPortfolioUrl = !!image.user.portfolio_url
 
     return (
-        <Card className='max-w-[244px]'>
+        <Card className='max-w-[244px] h-72'>
             <Image width={244} height={183} style={{ objectFit: 'cover', maxHeight: "183px" }} src={image.urls.regular} alt={image.alt_description || ''} />
             <CardBody>
                 <Caption>
@@ -90,18 +92,17 @@ const ImageCard = ({ image }: Props) => {
                     <Link href={image.links.html}>Unsplash</Link>
                 </Caption>
 
-                <ButtonContainer>
-
+                <CardBodyWrapper>
                     {!imageAnalyzed && <Button onClick={onAnalyze} isLoading={isAnalyzing}>Analyze</Button>}
-                </ButtonContainer>
 
-                {imageAnalyzed && tags &&
-                    <TagList>
-                        {tags.map((tag, index) => (
-                            <TagListItem key={index}>{tag}</TagListItem>
-                        ))}
-                    </TagList>
-                }
+                    {imageAnalyzed && tags &&
+                        <TagList>
+                            {tags.map((tag, index) => (
+                                <TagListItem key={index}>{tag}</TagListItem>
+                            ))}
+                        </TagList>
+                    }
+                </CardBodyWrapper>
             </CardBody>
         </Card>
     )
