@@ -1,9 +1,29 @@
-import React, { FC, PropsWithChildren } from 'react'
+"use client";
+import { FC, PropsWithChildren } from 'react';
+import styled from 'styled-components';
+
+const GridContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+    place-items: center;
+
+    @media (min-width: 640px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+`;
 
 const Grid: FC<PropsWithChildren> = ({ children }) => {
     return (
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center">{children}</div>
+        <GridContainer>{children}</GridContainer>
     )
 }
 

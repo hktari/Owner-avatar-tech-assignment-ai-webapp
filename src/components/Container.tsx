@@ -1,10 +1,19 @@
+"use client"
+
 import React, { FC, PropsWithChildren } from 'react'
+import styled from 'styled-components';
+
+const StyledContainer = styled.div`
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+`;
 
 const Container: FC<PropsWithChildren> = ({ children }) => {
     return (
-        <div className="container max-w-screen-lg mx-auto py-3 px-6">
+        <StyledContainer>
             {children}
-        </div>
+        </StyledContainer>
     )
 }
 

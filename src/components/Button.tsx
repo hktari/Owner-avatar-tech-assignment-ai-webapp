@@ -1,6 +1,6 @@
+"use client";
 import React, { FC, PropsWithChildren } from 'react'
 import styled from 'styled-components'
-
 
 const StyledButton = styled.button<{ variant: 'primary' | 'error' }>`
     background-color: ${({ variant }) => (variant === 'primary' ? '#0070f3' : '#ff4d4f')};
