@@ -53,17 +53,19 @@ type Props = {
 const ImageCard = ({ image }: Props) => {
     const [tags, setTags] = useState<string[]>([])
     const [isAnalyzing, setIsAnalyzing] = useState(false)
+    const [analyzeFailed, setAnalyzeFailed] = useState(false)
+
     const onAnalyze = async () => {
         try {
             setIsAnalyzing(true)
             setTags(await analyzeImage(image.urls.regular))
         } catch (error) {
-            // TODO: display user friendly error message
             console.error(error)
-            window.alert('Failed to analyze image')
+            setAnalyzeFailed(true)
         }
         finally {
             setIsAnalyzing(false)
+            setAnalyzeFailed(false)
         }
     }
 
@@ -80,7 +82,9 @@ const ImageCard = ({ image }: Props) => {
                     {hasPortfolioUrl && <>|</>}
                     <Link href={image.links.html}>Unsplash</Link>
                 </Caption>
-                {!imageAnalyzed && <Button onClick={onAnalyze} isLoading={isAnalyzing}>Analyze</Button>}
+                {!imageAnalyzed && <Button variant={analyzeFailed ? 'error' : 'primary'} onClick={onAnalyze} isLoading={isAnalyzing}>
+                    {analyzeFailed ? 'Try again' : 'Analyze'}
+                </Button>}
 
                 {imageAnalyzed && tags &&
                     <TagList>
