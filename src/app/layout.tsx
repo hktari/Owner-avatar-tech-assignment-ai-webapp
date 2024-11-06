@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import StyledComponentsRegistry from '../lib/registry'
+import "./globals.css"
 
 export const metadata: Metadata = {
   title: "Unsplash images tagged with AI",
@@ -14,9 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <StyledComponentsRegistry>
-          {children}
-        </StyledComponentsRegistry>
+        {children}
       </body>
     </html>
   );
